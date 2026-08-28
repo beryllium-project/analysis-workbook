@@ -1,7 +1,7 @@
 # Analysis workbook - Handoff
 
 Component: `analysis-workbook`
-Status: `Ready for first analysis session`
+Status: `Ready for first analysis session; pushed to private origin`
 Updated: `2026-08-28`
 
 ## Overall position
@@ -29,16 +29,22 @@ No analysis session has been run yet. `sessions/` contains no packages and
 | Tests | `tests/validate-agent.sh`, `tests/fixtures/valid-session/` | Passing |
 | Index | `WORKBOOK.md` | Generated, empty |
 | Discovery | `SOURCE-DISCOVERY-LOG.md`, `outbox/pm-queue.md` | Empty |
+| Remote | private `beryllium-project/analysis-workbook` | `main` pushed and synchronized |
 
 ## Blockers
 
-None inside this repository.
+None.
 
-One coordination item sits outside it: the Git remote
-`https://github.com/beryllium-project/analysis-workbook.git` is configured but
-has never been pushed or verified. The parent workspace records an
-unresolved account mismatch between the `beryllium-project` organization and
-the authenticated account. Do not push until a human resolves that.
+The Git remote `https://github.com/beryllium-project/analysis-workbook.git` is
+a private repository in the `beryllium-project` organization, alongside
+`helium-te-poc` and `provenance-review`. `main` was pushed on 2026-08-28 and
+the local and remote trees match exactly at 55 tracked files. The previously
+recorded account mismatch does not apply here: the authenticated account is a
+member of that organization.
+
+The ignored directories did not leak. Only the intentional policy `README.md`
+files under `inbox/`, `scratch/`, `sources/public/`, `sources/metadata/`, and
+`sources/quarantine/` are present on the remote.
 
 ## Exact next action
 
@@ -79,3 +85,4 @@ component at this time.
 | Activity ID | Date | Actor | Action | Result or limitation |
 | --- | --- | --- | --- | --- |
 | ACTIVITY-001 | 2026-08-28 | analysis-workbook | Built the component and its validation. | No analysis session has been run. |
+| ACTIVITY-002 | 2026-08-28 | analysis-workbook | Created the private origin repository and pushed `main`. | Remote tree matches the local tree; no analysis session has been run. |
