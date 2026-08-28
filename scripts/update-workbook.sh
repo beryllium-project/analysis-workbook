@@ -1,0 +1,257 @@
+#!/usr/bin/env bash
+
+set -u
+
+usage() {
+    cat >&2 <<'EOF'
+Usage:
+  update-workbook.sh [--check]
+
+Regenerates WORKBOOK.md from the session packages under sessions/.
+With --check the file is not written; a non-zero exit means WORKBOOK.md is
+stale relative to the session packages.
+EOF
+}
+
+die() {
+    printf 'update-workbook: ERROR: %s\n' "$*" >&2
+    exit 1
+}
+
+check_only=0
+while (($# > 0)); do
+    case $1 in
+    --check)
+        check_only=1
+        shift
+        ;;
+    -h | --help)
+        usage
+        exit 0
+        ;;
+    *)
+        usage
+        exit 2
+        ;;
+    esac
+done
+
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P) ||
+    die "cannot resolve script directory"
+repository_root=$(CDPATH= cd -- "$script_dir/.." && pwd -P) ||
+    die "cannot resolve repository root"
+sessions_dir=$repository_root/sessions
+workbook_file=$repository_root/WORKBOOK.md
+
+[[ -d $sessions_dir ]] || die "sessions directory is missing"
+
+field_value() {
+    sed -n "s/^$2:[[:space:]]*//p" "$1" 2>/dev/null | head -1 | tr -d '`' |
+        sed 's/[[:space:]]*$//'
+}
+
+title_of() {
+    sed -n 's/^# \(.*\) - [A-Za-z].*$/\1/p' "$1" 2>/dev/null | head -1
+}
+
+escape_cell() {
+    printf '%s' "$1" | sed 's/|/\\|/g' | tr -d '\n'
+}
+
+or_default() {
+    if [[ -z $1 ]]; then
+        printf '%s' "$2"
+    else
+        printf '%s' "$1"
+    fi
+}
+
+# rows are TAB separated:
+# session_id, session_title, session_created, session_status, session_phase,
+# session_distribution, inquiry_id, inquiry_title, topic, confidence,
+# inquiry_status, session_dir_name
+inquiry_rows=()
+session_rows=()
+session_aspects=()
+
+while IFS= read -r session_path; do
+    [[ -n $session_path ]] || continue
+    session_dir_name=${session_path##*/}
+    [[ $session_dir_name =~ ^AWB-[0-9]{8}-[0-9]{3}-[a-z0-9-]+$ ]] || continue
+    session_file=$session_path/session.md
+    [[ -f $session_file ]] || continue
+
+    session_id=$(field_value "$session_file" 'Session ID')
+    session_id=$(or_default "$session_id" "${session_dir_name%%-[a-z]*}")
+    session_title=$(or_default "$(title_of "$session_file")" "$session_dir_name")
+    session_created=$(or_default "$(field_value "$session_file" 'Created')" 'unknown')
+    session_status=$(or_default "$(field_value "$session_file" 'Status')" 'unknown')
+    session_phase=$(or_default "$(field_value "$session_file" 'Phase')" 'unknown')
+    session_distribution=$(or_default "$(field_value "$session_file" 'Distribution')" 'unknown')
+
+    aspect=$(awk '
+        $0 == "## SCOPE-001" { inside = 1; next }
+        inside && /^## / { inside = 0 }
+        inside && /^- Aspect:/ {
+            sub(/^- Aspect:[[:space:]]*/, "")
+            print
+            exit
+        }
+    ' "$session_file")
+    aspect=$(or_default "$aspect" 'not recorded')
+
+    inquiry_count=0
+    if [[ -d $session_path/inquiries ]]; then
+        while IFS= read -r inquiry_path; do
+            [[ -n $inquiry_path ]] || continue
+            inquiry_id=${inquiry_path##*/}
+            [[ $inquiry_id =~ ^Q-[0-9]{3}$ ]] || continue
+            report_file=$inquiry_path/report.md
+            [[ -f $report_file ]] || continue
+            inquiry_count=$((inquiry_count + 1))
+
+            inquiry_title=$(or_default "$(title_of "$report_file")" "$inquiry_id")
+            topic=$(or_default "$(field_value "$report_file" 'Topic')" 'unclassified')
+            confidence=$(or_default "$(field_value "$report_file" 'Confidence')" 'not recorded')
+            inquiry_status=$(or_default "$(field_value "$report_file" 'Status')" 'unknown')
+            inquiry_created=$(or_default "$(field_value "$report_file" 'Created')" "$session_created")
+
+            printf -v row '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' \
+                "$session_id" "$session_title" "$inquiry_created" \
+                "$session_status" "$session_phase" "$session_distribution" \
+                "$inquiry_id" "$inquiry_title" "$topic" "$confidence" \
+                "$inquiry_status" "$session_dir_name"
+            inquiry_rows+=("$row")
+        done < <(find "$session_path/inquiries" -mindepth 1 -maxdepth 1 -type d |
+            LC_ALL=C sort)
+    fi
+
+    printf -v row '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' \
+        "$session_id" "$session_title" "$session_created" "$session_status" \
+        "$session_phase" "$session_distribution" "$inquiry_count" \
+        "$session_dir_name"
+    session_rows+=("$row")
+    printf -v aspect_row '%s\t%s' "$session_id" "$aspect"
+    session_aspects+=("$aspect_row")
+done < <(find "$sessions_dir" -mindepth 1 -maxdepth 1 -type d | LC_ALL=C sort)
+
+generated=$(mktemp "${TMPDIR:-/tmp}/analysis-workbook.XXXXXX") ||
+    die "cannot create a temporary file"
+trap 'rm -f -- "$generated"' EXIT
+trap 'exit 1' HUP INT TERM
+
+{
+    cat <<'HEADER'
+# Analysis workbook
+
+Generated index of the analysis sessions in this repository. Regenerate with:
+
+```sh
+bash ./scripts/update-workbook.sh
+```
+
+Do not edit this file by hand; edits are overwritten. Every session package is
+`private` unless a responsible human has recorded a promotion. Nothing listed
+here is a decision, an approval, a sign-off, or a publication.
+
+HEADER
+
+    printf '## Sessions\n\n'
+    if ((${#session_rows[@]} == 0)); then
+        printf 'No session has been created.\n\n'
+    else
+        printf '| Session | Title | Created | Phase | Status | Distribution | Inquiries |\n'
+        printf '| --- | --- | --- | --- | --- | --- | --- |\n'
+        printf '%s\n' "${session_rows[@]}" | LC_ALL=C sort -r -t $'\t' -k3,3 -k1,1 |
+            while IFS=$'\t' read -r s_id s_title s_created s_status s_phase s_dist s_count s_dir; do
+                printf '| [%s](sessions/%s/session.md) | %s | %s | %s | %s | `%s` | %s |\n' \
+                    "$(escape_cell "$s_id")" "$s_dir" "$(escape_cell "$s_title")" \
+                    "$(escape_cell "$s_created")" "$(escape_cell "$s_phase")" \
+                    "$(escape_cell "$s_status")" "$(escape_cell "$s_dist")" \
+                    "$(escape_cell "$s_count")"
+            done
+        printf '\n'
+    fi
+
+    printf '## By topic\n\n'
+    if ((${#inquiry_rows[@]} == 0)); then
+        printf 'No inquiry has been opened.\n\n'
+    else
+        while IFS= read -r topic; do
+            [[ -n $topic ]] || continue
+            printf '### %s\n\n' "$topic"
+            printf '| Inquiry | Question | Session | Confidence | Status | Report | Summary |\n'
+            printf '| --- | --- | --- | --- | --- | --- | --- |\n'
+            printf '%s\n' "${inquiry_rows[@]}" |
+                awk -F'\t' -v want="$topic" '$9 == want' |
+                LC_ALL=C sort -t $'\t' -k3,3 -k1,1 -k7,7 |
+                while IFS=$'\t' read -r s_id s_title i_created s_status s_phase s_dist i_id i_title i_topic i_conf i_status s_dir; do
+                    printf '| %s | %s | [%s](sessions/%s/session.md) | %s | %s | [report](sessions/%s/inquiries/%s/report.md) | [summary](sessions/%s/inquiries/%s/summary.md) |\n' \
+                        "$(escape_cell "$i_id")" "$(escape_cell "$i_title")" \
+                        "$(escape_cell "$s_id")" "$s_dir" \
+                        "$(escape_cell "$i_conf")" "$(escape_cell "$i_status")" \
+                        "$s_dir" "$i_id" "$s_dir" "$i_id"
+                done
+            printf '\n'
+        done < <(printf '%s\n' "${inquiry_rows[@]}" | cut -f9 | LC_ALL=C sort -u)
+    fi
+
+    printf '## Chronological\n\n'
+    if ((${#inquiry_rows[@]} == 0)); then
+        printf 'No inquiry has been opened.\n\n'
+    else
+        printf '| Created | Session | Inquiry | Question | Topic | Confidence | Status |\n'
+        printf '| --- | --- | --- | --- | --- | --- | --- |\n'
+        printf '%s\n' "${inquiry_rows[@]}" | LC_ALL=C sort -r -t $'\t' -k3,3 -k1,1 -k7,7 |
+            while IFS=$'\t' read -r s_id s_title i_created s_status s_phase s_dist i_id i_title i_topic i_conf i_status s_dir; do
+                printf '| %s | [%s](sessions/%s/session.md) | [%s](sessions/%s/inquiries/%s/report.md) | %s | %s | %s | %s |\n' \
+                    "$(escape_cell "$i_created")" "$(escape_cell "$s_id")" "$s_dir" \
+                    "$(escape_cell "$i_id")" "$s_dir" "$i_id" \
+                    "$(escape_cell "$i_title")" "$(escape_cell "$i_topic")" \
+                    "$(escape_cell "$i_conf")" "$(escape_cell "$i_status")"
+            done
+        printf '\n'
+    fi
+
+    printf '## Session aspects\n\n'
+    if ((${#session_aspects[@]} == 0)); then
+        printf 'No session has been created.\n\n'
+    else
+        printf '| Session | Frozen aspect |\n'
+        printf '| --- | --- |\n'
+        printf '%s\n' "${session_aspects[@]}" | LC_ALL=C sort |
+            while IFS=$'\t' read -r a_id a_aspect; do
+                printf '| %s | %s |\n' \
+                    "$(escape_cell "$a_id")" "$(escape_cell "$a_aspect")"
+            done
+        printf '\n'
+    fi
+
+    cat <<'FOOTER'
+## Related indexes
+
+- [SOURCE-DISCOVERY-LOG.md](SOURCE-DISCOVERY-LOG.md) - sources found here that
+  are not yet recorded in an owning Beryllium research component.
+- [outbox/pm-queue.md](outbox/pm-queue.md) - the pull queue the Project Manager
+  and other research agents read.
+- [RESEARCH-SOURCES.md](RESEARCH-SOURCES.md) - the local-first source registry
+  and consumption order.
+FOOTER
+} >"$generated"
+
+if ((check_only)); then
+    if [[ ! -f $workbook_file ]]; then
+        printf 'update-workbook: WORKBOOK.md is missing\n' >&2
+        exit 1
+    fi
+    if ! cmp -s -- "$generated" "$workbook_file"; then
+        printf 'update-workbook: WORKBOOK.md is stale; run scripts/update-workbook.sh\n' >&2
+        exit 1
+    fi
+    printf 'OK WORKBOOK.md is current\n'
+    exit 0
+fi
+
+cp -- "$generated" "$workbook_file" || die "cannot write WORKBOOK.md"
+printf 'OK wrote WORKBOOK.md (%d session(s), %d inquir(ies))\n' \
+    "${#session_rows[@]}" "${#inquiry_rows[@]}"
