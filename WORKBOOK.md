@@ -12,19 +12,29 @@ here is a decision, an approval, a sign-off, or a publication.
 
 ## Sessions
 
-No session has been created.
+| Session | Title | Created | Phase | Status | Distribution | Inquiries |
+| --- | --- | --- | --- | --- | --- | --- |
+| [AWB-20260829-001](sessions/AWB-20260829-001-post-g-install-readback-use-case/session.md) | Post-G-stage install readback use case and threat analysis | 2026-08-29 | Analysis | Complete | `private` | 1 |
 
 ## By topic
 
-No inquiry has been opened.
+### Post-G-stage install readback use case
+
+| Inquiry | Question | Session | Confidence | Status | Report | Summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Q-001 | Establish the post-G-stage install readback use case | [AWB-20260829-001](sessions/AWB-20260829-001-post-g-install-readback-use-case/session.md) | Medium | Complete | [report](sessions/AWB-20260829-001-post-g-install-readback-use-case/inquiries/Q-001/report.md) | [summary](sessions/AWB-20260829-001-post-g-install-readback-use-case/inquiries/Q-001/summary.md) |
 
 ## Chronological
 
-No inquiry has been opened.
+| Created | Session | Inquiry | Question | Topic | Confidence | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2026-08-29 | [AWB-20260829-001](sessions/AWB-20260829-001-post-g-install-readback-use-case/session.md) | [Q-001](sessions/AWB-20260829-001-post-g-install-readback-use-case/inquiries/Q-001/report.md) | Establish the post-G-stage install readback use case | Post-G-stage install readback use case | Medium | Complete |
 
 ## Session aspects
 
-No session has been created.
+| Session | Frozen aspect |
+| --- | --- |
+| AWB-20260829-001 | Determine the security and assurance use case for post-G-stage install readback in Beryllium, the threats that could justify it, its failure and false-assurance modes, and whether alternative verification mechanisms provide better coverage. |
 
 ## Related indexes
 
