@@ -25,6 +25,7 @@ Use `execute` only for:
 - `scripts/new-inquiry.sh`;
 - `scripts/readonly-inspect.sh`;
 - `scripts/update-workbook.sh`;
+- `scripts/validate-helium-transfer-queue.sh`;
 - `scripts/validate-session.sh`;
 - `tests/validate-agent.sh`;
 - a component command that the user approved by name for the current session.
@@ -160,6 +161,29 @@ could not be checked against a reachable index is `unconfirmed`, not `new`.
 Never write into another component to register a source, and never change an
 outbox status this agent did not set.
 
+## Helium method transfer
+
+When the user explicitly requests a Helium-to-Beryllium method transfer,
+append a `HET-NNN` item to `outbox/helium-transfer-queue.md`. Do not encode it
+as a source discovery or reuse the `PMQ-NNN` schema.
+
+Record the exact user-direction date, portable source locator, frozen source
+revision, maintained source artifact, target, candidate reusable method,
+source-specific details that do not transfer, residual assumptions, and
+non-claims. Every item starts as `new` and `unaccepted`.
+
+The queue is an input to owner-side triage only. It never represents
+Beryllium adoption, a plan or roadmap, responsible-human review, acceptance,
+approval, implementation authorization, assurance, publication, release, or
+hardware validation. Observe an exact owner-side record before appending any
+later lifecycle status, and never modify Helium or Beryllium to carry the
+item.
+
+Treat the item definition as immutable. Append lifecycle changes only to
+status history, update the derived queue summary to match the final history
+row, and run `scripts/validate-helium-transfer-queue.sh`. Use `--baseline`
+when a prior queue revision is available.
+
 ## Validation and completion
 
 Draft validation for an incomplete scaffold:
@@ -172,6 +196,8 @@ Default completion validation, then the contract check:
 
 ```sh
 bash ./scripts/validate-session.sh sessions/AWB-YYYYMMDD-NNN-short-name
+bash ./scripts/validate-helium-transfer-queue.sh
+bash ./scripts/validate-helium-transfer-queue.sh
 bash ./tests/validate-agent.sh
 ```
 

@@ -110,6 +110,19 @@ The outbox is a pull interface: the Project Manager and other research agents
 read it. This repository never writes into another component to register a
 source.
 
+## Helium method transfer
+
+Explicitly directed Helium lessons and candidate method inputs for
+Beryllium-side triage are recorded in
+[outbox/helium-transfer-queue.md](outbox/helium-transfer-queue.md) as stable
+`HET-NNN` items. Every item enters as `new` and `unaccepted`.
+
+This is a separate pull interface from the source-discovery PM queue. It
+transfers candidate method rather than Helium's fixed constants or assurance
+result, and it never claims Beryllium adoption, planning approval,
+responsible-human review, implementation authorization, assurance,
+publication, release, or hardware validation.
+
 ## Scripts
 
 | Script | Purpose |
@@ -118,6 +131,7 @@ source.
 | `scripts/new-inquiry.sh` | Allocate `Q-NNN` and scaffold its artifacts. |
 | `scripts/readonly-inspect.sh` | Read-only inspection of sibling components. |
 | `scripts/update-workbook.sh` | Regenerate `WORKBOOK.md`. |
+| `scripts/validate-helium-transfer-queue.sh` | Validate every `HET-NNN` item, lifecycle transition, portable locator, derived summary, and append-only baseline. |
 | `scripts/validate-session.sh` | Validate a session package. |
 
 ## Validation
@@ -126,6 +140,8 @@ source.
 bash ./scripts/validate-session.sh --draft sessions/AWB-YYYYMMDD-NNN-short-name
 bash ./scripts/validate-session.sh sessions/AWB-YYYYMMDD-NNN-short-name
 bash ./scripts/validate-session.sh --baseline <prior-copy> sessions/AWB-YYYYMMDD-NNN-short-name
+bash ./scripts/validate-helium-transfer-queue.sh
+bash ./scripts/validate-helium-transfer-queue.sh --baseline <prior-queue>
 bash ./tests/validate-agent.sh
 git diff --check
 ```

@@ -5,7 +5,8 @@
 This is an independent component repository under the Beryllium Project
 Manager workspace. It owns analysis agents, workflow instructions, session
 artifact templates, durable analysis session packages, classified source
-metadata, the source-discovery log and outbox, and local validation.
+metadata, the source-discovery log, pull-only outbox queues, and local
+validation.
 
 Read the parent `../SOT.md` and `../COMPONENTS.md` before resolving sibling
 components. Run Git operations from this repository for component work and
@@ -113,6 +114,34 @@ The outbox is a pull interface. The Project Manager and other research agents
 read it. This repository never writes into another component to register a
 source. See [AGENT-INTERFACE.md](../AGENT-INTERFACE.md).
 
+## Helium method transfer
+
+When the user explicitly directs a Helium lesson or method input toward
+Beryllium-side triage, append a stable `HET-NNN` item to
+[outbox/helium-transfer-queue.md](../outbox/helium-transfer-queue.md).
+
+- Keep this queue separate from the source-discovery-only `pm-queue.md`
+  schema and `PMQ-NNN` identifiers.
+- Record the direction date, portable component locator, exact source
+  revision, maintained source artifact, target, residual assumptions, and
+  explicit non-claims.
+- Create every item with queue status `new` and input state `unaccepted`.
+- Transfer candidate method, not Helium's fixed profile, constants, claim
+  totals, tool choice, or assurance boundary.
+- Never use a queue status to imply Beryllium adoption, planning approval,
+  responsible-human review, implementation authorization, assurance,
+  publication, release, or hardware validation.
+- Mirror a later lifecycle state only after observing an exact owner-side
+  record. Append status history; corrections add a superseding item rather
+  than rewriting the original input.
+- Treat each item definition as immutable, update the derived queue summary
+  only to match the final history row, and run
+  `scripts/validate-helium-transfer-queue.sh`. Use `--baseline` when a prior
+  queue revision is available.
+
+The queue is a pull interface only. This repository never writes the
+candidate into Beryllium planning or implementation artifacts.
+
 ## Artifact contract
 
 Use stable session IDs `AWB-YYYYMMDD-NNN` and inquiry IDs `Q-NNN`. A session
@@ -147,6 +176,7 @@ Use only maintained repository checks:
 ```sh
 bash ./scripts/validate-session.sh --draft sessions/AWB-YYYYMMDD-NNN-short-name
 bash ./scripts/validate-session.sh sessions/AWB-YYYYMMDD-NNN-short-name
+bash ./scripts/validate-helium-transfer-queue.sh
 bash ./tests/validate-agent.sh
 git diff --check
 ```

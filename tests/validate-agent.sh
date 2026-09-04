@@ -117,8 +117,19 @@ copy_fixture() {
     printf '%s' "$target/${fixture##*/}"
 }
 
+copy_transfer() {
+    case_counter=$((case_counter + 1))
+    local target=$sandbox/transfer-$case_counter.md
+    cp -- "$repository_root/outbox/helium-transfer-queue.md" "$target"
+    printf '%s' "$target"
+}
+
 validate() {
     bash "$repository_root/scripts/validate-session.sh" "$@"
+}
+
+validate_transfer() {
+    bash "$repository_root/scripts/validate-helium-transfer-queue.sh" "$@"
 }
 
 # ---------------------------------------------------------------------------
@@ -140,6 +151,7 @@ for required in \
     WORKBOOK.md \
     SOURCE-DISCOVERY-LOG.md \
     outbox/pm-queue.md \
+    outbox/helium-transfer-queue.md \
     .gitignore; do
     require_file "$repository_root/$required"
 done
@@ -151,7 +163,7 @@ for template in question report summary evidence search-log open-questions \
 done
 
 for script in new-session new-inquiry readonly-inspect update-workbook \
-    validate-session; do
+    validate-helium-transfer-queue validate-session; do
     require_file "$repository_root/scripts/$script.sh"
     require_executable "$repository_root/scripts/$script.sh"
     expect_pass "scripts/$script.sh parses" bash -n "$repository_root/scripts/$script.sh"
@@ -166,6 +178,7 @@ require_pattern "$orchestrator" '^name: analysis-workbook$'
 require_pattern "$orchestrator" '^user-invocable: true$'
 require_pattern "$orchestrator" '^disable-model-invocation: true$'
 require_pattern "$orchestrator" '"ask_user"'
+require_text "$orchestrator" '- `scripts/validate-helium-transfer-queue.sh`;'
 
 for specialist in analysis-evidence analysis-research; do
     file=$repository_root/.github/agents/$specialist.agent.md
@@ -181,6 +194,7 @@ skill=$repository_root/.github/skills/beryllium-analysis/SKILL.md
 require_pattern "$skill" '^name: beryllium-analysis$'
 require_text "$skill" 'Planning'
 require_text "$skill" 'Analysis'
+require_text "$skill" '`scripts/validate-helium-transfer-queue.sh`,'
 
 printf '\n== boundary language ==\n'
 
@@ -195,6 +209,7 @@ require_text "$instructions" 'private'
 interface=$repository_root/AGENT-INTERFACE.md
 require_text "$interface" 'pull'
 require_text "$interface" 'outbox/pm-queue.md'
+require_text "$interface" 'outbox/helium-transfer-queue.md'
 
 sources=$repository_root/RESEARCH-SOURCES.md
 require_text "$sources" 'provenance-review'
@@ -202,7 +217,8 @@ require_text "$sources" 'bibliography.md'
 
 for document in "$instructions" "$interface" "$sources" \
     "$repository_root/README.md" "$repository_root/HANDOFF.md" \
-    "$repository_root/WORKBOOK.md" "$skill" "$orchestrator"; do
+    "$repository_root/WORKBOOK.md" "$repository_root/outbox/helium-transfer-queue.md" \
+    "$skill" "$orchestrator"; do
     refute_pattern "$document" '(^|[^A-Za-z0-9_])(/home/|/Users/|/root/)'
 done
 
@@ -210,6 +226,131 @@ gitignore=$repository_root/.gitignore
 require_text "$gitignore" 'inbox/'
 require_text "$gitignore" 'scratch/'
 require_text "$gitignore" 'sources/quarantine/'
+
+# ---------------------------------------------------------------------------
+# Helium method-transfer queue
+# ---------------------------------------------------------------------------
+
+printf '\n== Helium method-transfer queue ==\n'
+
+transfer=$repository_root/outbox/helium-transfer-queue.md
+require_text "$repository_root/README.md" 'outbox/helium-transfer-queue.md'
+require_text "$repository_root/HANDOFF.md" 'HET-001'
+require_text "$repository_root/WORKBOOK.md" 'outbox/helium-transfer-queue.md'
+require_text "$instructions" 'outbox/helium-transfer-queue.md'
+require_text "$orchestrator" 'outbox/helium-transfer-queue.md'
+require_text "$skill" 'HET-NNN'
+
+require_pattern "$transfer" '^# Helium-to-Beryllium method transfer queue$'
+require_text "$transfer" 'This queue is deliberately separate from'
+require_text "$transfer" 'does not use'
+require_text "$transfer" 'HET-NNN'
+require_text "$transfer" '| HET-001 | 2026-09-04 | 2026-09-04 |'
+require_text "$transfer" 'Helium Tier 8 H6 candidate `ed1545155c8d09aa75803a256eee0d2fa8844b91`'
+require_text "$transfer" '`component://helium-te-poc/docs/fv-pathfinder-lessons.md`'
+require_text "$transfer" 'Helium Tier 8 is the FV endpoint.'
+require_text "$transfer" 'Do not add a Tier 9 merely to increase'
+require_text "$transfer" 'Transfer the method for Beryllium-side evaluation, not Helium'
+require_text "$transfer" 'Select one stable security-significant production seam'
+require_text "$transfer" 'Preserve pure/effect separation'
+require_text "$transfer" 'Use an independent extensional specification'
+require_text "$transfer" 'State explicit rollback and failure relations'
+require_text "$transfer" 'Plan mutations before acceptance'
+require_text "$transfer" 'Retain exact evidence and provenance'
+require_text "$transfer" 'Keep residual assumptions adjacent'
+require_text "$transfer" 'Keep human gates separate'
+require_text "$transfer" '| Initial queue status | `new` |'
+require_text "$transfer" '| Initial input state | `unaccepted` |'
+require_text "$transfer" 'not a claim of Beryllium adoption, planning approval'
+refute_pattern "$transfer" '^\| Queue ID \| Raised on \| Session \| Discovery ID \|'
+expect_pass "Helium transfer queue validates" validate_transfer "$transfer"
+expect_pass "Helium transfer queue passes baseline validation against itself" \
+    validate_transfer --baseline "$transfer" "$transfer"
+
+transfer_case=$(copy_transfer)
+cat >>"$transfer_case" <<'EOF'
+
+## HET-001 - Duplicate
+EOF
+expect_message "rejects a duplicate transfer ID" \
+    'duplicate item heading: HET-001' validate_transfer "$transfer_case"
+
+transfer_case=$(copy_transfer)
+sed -i '/^| Maintained source |/d' "$transfer_case"
+expect_message "rejects a missing transfer provenance field" \
+    'missing provenance field: Maintained source' \
+    validate_transfer "$transfer_case"
+
+transfer_case=$(copy_transfer)
+sed -i 's/^## HET-001 /## HET-002 /' "$transfer_case"
+sed -i 's/^| HET-001 /| HET-002 /' "$transfer_case"
+expect_message "rejects a non-sequential first transfer ID" \
+    'item IDs are not sequential' validate_transfer "$transfer_case"
+
+transfer_case=$(copy_transfer)
+sed -i '/^| HET-001 /s/`new`/`routed`/' "$transfer_case"
+expect_message "rejects transfer summary/history mismatch" \
+    'summary status does not match final status-history row' \
+    validate_transfer "$transfer_case"
+
+transfer_case=$(copy_transfer)
+sed -i '/^| HET-001 /s/`new`/`bogus`/' "$transfer_case"
+expect_message "rejects an unsupported transfer status" \
+    'unsupported summary status: bogus' validate_transfer "$transfer_case"
+
+transfer_case=$(copy_transfer)
+sed -i \
+    's#`component://helium-te-poc`#`/tmp/helium-te-poc`#' \
+    "$transfer_case"
+expect_message "rejects a non-portable transfer locator" \
+    'non-portable absolute locator' validate_transfer "$transfer_case"
+
+routed_transfer=$(copy_transfer)
+sed -i '/^| HET-001 /s/`new`/`routed`/' "$routed_transfer"
+sed -i '/^## Activity log$/i\
+| 2026-09-04 | `routed` | Project Manager | `workspace://SOT.md` | Routed for owner-side triage. |\
+' "$routed_transfer"
+expect_pass "accepts a valid appended transfer transition" \
+    validate_transfer "$routed_transfer"
+expect_pass "accepts an append-only transfer transition against baseline" \
+    validate_transfer --baseline "$transfer" "$routed_transfer"
+
+transfer_case=$(copy_transfer)
+sed -i '/^| HET-001 /s/`new`/`routed`/' "$transfer_case"
+sed -i '/^## Activity log$/i\
+| 2026-09-04 | `routed` | Project Manager | Not applicable | Routed without an owner record. |\
+' "$transfer_case"
+expect_message "rejects a handled transfer without owner record" \
+    'status routed requires a portable owner-side record' \
+    validate_transfer "$transfer_case"
+
+transfer_case=$(copy_transfer)
+sed -i '/^## Activity log$/i\
+| 2026-09-04 | `new` | analysis-workbook | Not applicable | Duplicate initial state. |\
+' "$transfer_case"
+expect_message "rejects an illegal transfer transition" \
+    'illegal status transition: new -> new' validate_transfer "$transfer_case"
+
+transfer_case=$(copy_transfer)
+sed -i '/^## Activity log$/i\
+| not-a-date | `routed` | Project Manager | `workspace://SOT.md` | Malformed date. |\
+' "$transfer_case"
+expect_message "rejects a malformed transfer-history row" \
+    'history row 2 has an invalid date' validate_transfer "$transfer_case"
+
+transfer_case=$(copy_transfer)
+sed -i \
+    's/Recorded from the 2026-09-04 user direction/Changed prior history/' \
+    "$transfer_case"
+expect_message "rejects modified append-only transfer history" \
+    'append-only status history changed: HET-001' \
+    validate_transfer --baseline "$transfer" "$transfer_case"
+
+transfer_case=$(copy_transfer)
+sed -i '/^| 2026-09-04 | `new` | analysis-workbook |/d' "$transfer_case"
+expect_message "rejects deleted append-only transfer history" \
+    'contains no status-history rows' \
+    validate_transfer --baseline "$transfer" "$transfer_case"
 
 # ---------------------------------------------------------------------------
 # validator: positive cases

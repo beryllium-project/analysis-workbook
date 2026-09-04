@@ -234,6 +234,9 @@ HEADER
   are not yet recorded in an owning Beryllium research component.
 - [outbox/pm-queue.md](outbox/pm-queue.md) - the pull queue the Project Manager
   and other research agents read.
+- [outbox/helium-transfer-queue.md](outbox/helium-transfer-queue.md) - the
+  pull queue of Helium method inputs for Beryllium-side triage; lifecycle
+  state is recorded in each item's append-only status history.
 - [RESEARCH-SOURCES.md](RESEARCH-SOURCES.md) - the local-first source registry
   and consumption order.
 FOOTER
