@@ -75,27 +75,41 @@ added.
 `outbox/pm-queue.md` carries pointers to sources that are not recorded in an
 owning research component.
 
-Entry statuses:
+Entry statuses (the same set as the `outbox/pm-queue.md` header):
 
 | Status | Meaning | Who sets it |
 | --- | --- | --- |
-| `new` | Recorded by this agent, not yet seen by the Project Manager | this agent |
-| `acknowledged` | The Project Manager has read the entry and assigned a destination | Project Manager |
-| `routed` | Handed to the owning component's agent or human owner | Project Manager |
-| `integrated` | The owning component recorded the source in its own corpus | Project Manager |
-| `declined` | Out of scope, duplicate, or not to be pursued, with a reason | Project Manager |
+| `new` | Recorded by this agent, checked against every reachable index, not yet resolved by the Project Manager | this agent |
+| `unconfirmed` | Recorded by this agent while a required index was unreachable | this agent |
+| `accepted` | A pointer to the source is recorded in the owning component's designated index under that component's rules, by its owner or by the Project Manager as a metadata-only carried write on the owner's delegated authority; never corpus admission, review, or endorsement | Project Manager |
+| `duplicate` | Already recorded by the owning component | Project Manager |
+| `rejected` | Out of scope or not to be pursued, with a reason | Project Manager |
+| `deferred` | Tracked by the Project Manager but not acted on now | Project Manager |
+
+Routing an entry to an owner is an intermediate Project Manager state kept in
+`../project-manager/queue/LEDGER.md`, not a status of this file; a row stays
+`new` or `unconfirmed` until it reaches a final status above.
 
 Consumers:
 
-1. The Project Manager reads `outbox/pm-queue.md` from the parent workspace
-   during coordination, following the parent handoff procedure.
+1. The Project Manager reads `outbox/pm-queue.md` from its own component,
+   `../project-manager/`, during a coordination turn, following
+   `../project-manager/HANDOFF.md` and the ledger-first queue protocol in
+   `../project-manager/queue/README.md`: every disposition is recorded in
+   `../project-manager/queue/LEDGER.md` before this file changes.
 2. The Project Manager routes each entry to the owning component and its human
-   owner. It does not add the source to a component corpus on its own
-   authority, because citation promotion is a human gate in
-   `cheri-riscv-notes-repo` and integration is owner-only in
+   owner. Under its standing carry authority
+   (`../project-manager/records/decisions/PMD-20260904-003-standing-carry-authority.md`)
+   it may record a metadata-only pointer in an owner's hand-editable index on
+   that owner's delegated authority; it never admits a source to a corpus on
+   its own authority, because citation promotion is a human gate in
+   `cheri-riscv-notes-repo` and research integration is owner-only in
    `formal-verification-research`.
-3. Status transitions after `new` are written by the Project Manager. This
-   agent appends new entries and never rewrites a status it did not set.
+3. Status transitions after `new` or `unconfirmed` are written by the Project
+   Manager, as a carried write committed in this repository under that
+   authority (class 1) when the worktree is clean, or by the responsible human
+   otherwise. This agent appends new entries and never rewrites a status it
+   did not set.
 
 ### Helium method-transfer queue
 
