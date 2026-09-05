@@ -30,6 +30,10 @@ absent from all of:
 - `../osr-claude/sources/` including each collection manifest
 - `../xrv-research-repo/review-log.md`
 - `../provenance-review/sources/metadata/`
+- `../project-manager/queue/LEDGER.md` (source pointers already `routed` by
+  the Project Manager to an owning component or `accepted` into that
+  component's designated index; a source found there is not queued again as
+  `new`)
 - this repository's `SOURCE-DISCOVERY-LOG.md`
 
 Record which of these were reachable and which were not. A source that could
