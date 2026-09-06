@@ -93,7 +93,7 @@ row is authoritative for current transfer status.
 
 | Transfer ID | Raised on | Direction date | Subject | Target | Status | Input state |
 | --- | --- | --- | --- | --- | --- | --- |
-| HET-001 | 2026-09-04 | 2026-09-04 | Helium Tier 8 endpoint and reusable FV method | `component://beryllium-repo` iterative development process | `new` | `unaccepted` |
+| HET-001 | 2026-09-04 | 2026-09-04 | Helium Tier 8 endpoint and reusable FV method | `component://beryllium-repo` iterative development process | `recorded` | `unaccepted` |
 
 ## HET-001 - Helium Tier 8 endpoint and reusable FV method
 
@@ -171,9 +171,12 @@ formal verification, hardware validation, or assurance.
 | Date | Status | Actor | Owner-side record | Note |
 | --- | --- | --- | --- | --- |
 | 2026-09-04 | `new` | analysis-workbook | Not applicable | Recorded from the 2026-09-04 user direction as an unaccepted input; the analysis workbook did not modify either owner component or change any owner-side status. |
+| 2026-09-06 | `routed` | analysis-workbook | `workspace://project-manager/outbox/component-requests.md` `PMR-016` (raised 2026-09-04; Project Manager commit `94888ea` closes it) | Mirrored from the Project Manager routing record; `beryllium-repo` is carry-ineligible for the Project Manager, so the request was handed to the Beryllium owner by the responsible human. No Beryllium adoption, review, approval, release, or assurance state changed. |
+| 2026-09-06 | `recorded` | analysis-workbook | `workspace://project-manager/records/decisions/PMD-20260905-002-het-001-owner-triage-recorded.md` at Project Manager commit `94888ea` (and `workspace://project-manager/outbox/component-requests.md` `PMR-016`, closed 2026-09-05) | Mirrored from the Project Manager record: on 2026-09-05 the responsible human, acting as the Beryllium owner, triaged HET-001 and recorded all eight candidate lessons as planning inputs for a possible future Beryllium security-significant seam; none is adopted as an owner-side entry criterion, design constraint, evidence requirement, or exit criterion. The input state stays `unaccepted`; this is not acceptance, and no Beryllium authorization, review, approval, release, or assurance state changed (R8-H0 profile freeze only; H1-H4 unauthorized; K3 hardware NOT RUN). |
 
 ## Activity log
 
 | Activity ID | Date | Actor | Action | Result or limitation |
 | --- | --- | --- | --- | --- |
 | ACTIVITY-001 | 2026-09-04 | analysis-workbook | Created the dedicated Helium method-transfer queue and recorded HET-001. | The item is `new` and `unaccepted`; no Beryllium adoption, review, approval, release, or assurance state changed. |
+| ACTIVITY-002 | 2026-09-06 | analysis-workbook | Mirrored HET-001 to `recorded` after observing the Project Manager record PMD-20260905-002 (PMR-016 closed 2026-09-05); rows based on that record's "Exact mirror rows for PMR-019", applied on the maintainer's authority. | The input state stays `unaccepted`; no Beryllium adoption, review, approval, release, or assurance state changed. |
