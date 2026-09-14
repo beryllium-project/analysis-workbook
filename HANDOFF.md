@@ -13,8 +13,9 @@ cross-component collaboration-request queue.
 
 The method-transfer queue starts with HET-001, which records the 2026-09-04
 user direction that Helium Tier 8 is the FV endpoint and presents reusable FV
-methods for Beryllium-side triage. HET-001 is `new` and `unaccepted`. It is
-not a Beryllium plan, adoption, approval, review, release, or assurance claim.
+methods for Beryllium-side triage. HET-001 is `recorded` and `unaccepted`. It
+is not a Beryllium plan, adoption, approval, review, release, or assurance
+claim.
 
 ## What exists
 
@@ -31,9 +32,9 @@ not a Beryllium plan, adoption, approval, review, release, or assurance claim.
 | Tests | `tests/validate-agent.sh`, `tests/fixtures/valid-session/` | Contract coverage includes the transfer queue |
 | Index | `WORKBOOK.md` | Generated; three sessions and seven inquiries |
 | Source discovery | `SOURCE-DISCOVERY-LOG.md`, `outbox/pm-queue.md` | 21 source pointers in the source-discovery workflow |
-| Method transfer | `outbox/helium-transfer-queue.md` | HET-001 is `new` and `unaccepted` |
-| Collaboration requests | `outbox/collaboration-requests.md` | CRQ-001 requests an XRV owner collaboration interface |
-| Repository state | `main` | Local analysis and interface changes are uncommitted |
+| Method transfer | `outbox/helium-transfer-queue.md` | HET-001 is `recorded` and `unaccepted` |
+| Collaboration requests | `outbox/collaboration-requests.md` | CRQ-001 is `routed`, mirrored from Project Manager request `PMR-034` |
+| Repository state | `main` | PMR-036 owner correction validated; local-only until separately pushed |
 
 ## Current transfer input
 
@@ -56,9 +57,9 @@ The item says:
 
 ## Blockers
 
-The XRV collaboration interface is owner-blocked. CRQ-001 asks the Project
-Manager to coordinate the XRV owner change after reconciling the missing
-`7314e2f` and `REV-20260904-001..009` history.
+CRQ-001 has been routed through Project Manager request `PMR-034`. Its queue
+status is a maintainer-written mirror of that exact record, not a Project
+Manager write and not evidence that the XRV owner work is complete.
 
 HET-001 intentionally remains pending Beryllium-side triage. That open
 lifecycle state is not a blocker and must not be converted into an adoption,
@@ -66,9 +67,10 @@ planning approval, responsible-human review, release, or assurance claim.
 
 ## Exact next action
 
-The Project Manager should pull CRQ-001, record the XRV owner request, and
-coordinate the owner-side collaboration interface and PMQ-017..020 intake
-without editing XRV research.
+The next Project Manager turn should inspect the XRV owner evidence for
+`PMR-025` and `PMR-034`, then report the resulting disposition. The workbook
+maintainer may mirror a later `accepted`, `rejected`, `deferred`, or
+`completed` status only from that exact Project Manager or owner-side record.
 
 ## Validation
 
@@ -117,3 +119,4 @@ triage input and does not authorize a write to Helium or Beryllium.
 | ACTIVITY-003 | 2026-08-29 | analysis-workbook | Completed the first private analysis session and populated the source-discovery queue. | The session produced analysis and source pointers, not decisions or approvals. |
 | ACTIVITY-004 | 2026-09-04 | analysis-workbook | Added the dedicated Helium method-transfer interface and HET-001. | HET-001 is `new` and `unaccepted`; no sibling component was modified. |
 | ACTIVITY-005 | 2026-09-14 | analysis-workbook | Completed two additional private analysis sessions and added CRQ-001. | XRV collaboration setup is specified and queued; no sibling component was modified. |
+| ACTIVITY-006 | 2026-09-14 | analysis-workbook | Corrected the CRQ status-writer contract under PMR-036 and mirrored CRQ-001 as `routed` from PMR-034. | The Project Manager record remains authoritative; no owner completion or acceptance is inferred. |

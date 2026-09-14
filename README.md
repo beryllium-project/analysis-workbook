@@ -132,7 +132,10 @@ Owner-boundary and collaboration-protocol proposals are recorded in
 This is a third pull interface. It does not carry source intake or Helium
 methods and does not grant this component write access to a sibling
 repository. The Project Manager routes the request; the owning component
-decides and implements any collaboration interface under its own rules.
+decides and implements any collaboration interface under its own rules. The
+analysis-workbook maintainer mirrors later statuses from exact Project Manager
+or owner-side records; the Project Manager does not write this queue unless
+the responsible human explicitly expands its carry authority.
 
 ## Scripts
 

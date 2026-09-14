@@ -153,8 +153,10 @@ transfer.
 1. This component records an owner-ready specification and a stable `CRQ-NNN`
    row with status `new`.
 2. The Project Manager records a component-owner request under its own
-   coordination process and may change the queue status only when an exact
-   Project Manager or owner-side record exists.
+   coordination process. The analysis-workbook maintainer mirrors a later
+   queue status only when an exact Project Manager or owner-side record exists;
+   the Project Manager does not write this queue unless the responsible human
+   explicitly extends its standing carry authority.
 3. The component owner decides whether to adopt, revise, defer, or reject the
    interface and performs every research, review, instruction, handoff, or
    `COLLAB.md` change outside the Project Manager's narrow carry authority.
@@ -163,6 +165,9 @@ transfer.
 5. Collaboration requests do not replace `pm-queue.md` source intake,
    `review-log.md` source review, or `helium-transfer-queue.md` method
    transfer.
+
+The queue row is a derived mirror. The exact Project Manager or owner-side
+record named in `Owner-side record` remains authoritative.
 
 ## Relationship to existing interfaces
 

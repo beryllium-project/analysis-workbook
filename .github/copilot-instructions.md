@@ -151,8 +151,12 @@ repository and append a stable `CRQ-NNN` row to
 
 - Keep collaboration requests separate from source-discovery `PMQ-NNN` and
   Helium-transfer `HET-NNN` records.
-- Create requests with status `new`; only the Project Manager mirrors later
-  handling after observing an exact Project Manager or owner-side record.
+- Create requests with status `new`. The analysis-workbook maintainer mirrors
+  later handling only after observing an exact Project Manager or owner-side
+  record; the Project Manager does not write this queue unless the responsible
+  human explicitly extends its standing carry authority.
+- Preserve the exact external record in `Owner-side record`; a mirrored queue
+  status is derived coordination state, not the authority for that state.
 - A collaboration request never grants permission to write another component,
   create a guest branch, allocate owner review IDs, integrate research, or
   infer acceptance.
