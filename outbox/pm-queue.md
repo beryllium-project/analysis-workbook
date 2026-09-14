@@ -47,7 +47,7 @@ been read by anyone else, and never an approval to redistribute it.
 | PMQ-018 | 2026-09-14 | AWB-20260914-001 | DISC-018 | NOVA Microhypervisor source and current project | https://github.com/udosteinberg/NOVA | xrv-research-repo | public | unknown | new | Not applicable | Awaiting Project Manager coordination with the XRV owner. |
 | PMQ-019 | 2026-09-14 | AWB-20260914-001 | DISC-019 | Hedron Hypervisor | https://github.com/cyberus-technology/hedron | xrv-research-repo | public | unknown | new | Not applicable | Awaiting Project Manager coordination with the XRV owner. |
 | PMQ-020 | 2026-09-14 | AWB-20260914-001 | DISC-020 | L4Re Operating System Framework and uvmm | https://l4re.org/ | xrv-research-repo | public | approved | new | Not applicable | Awaiting Project Manager coordination with the XRV owner. |
-| PMQ-021 | 2026-09-14 | AWB-20260914-001 | DISC-021 | NOVA concurrent-separation-logic verification update | https://popl26.sigplan.org/details/rocqpl-2026-papers/12/ | formal-verification-research | public | unknown | new | Not applicable | Awaiting Project Manager coordination with the formal-verification research owner. |
+| PMQ-021 | 2026-09-14 | AWB-20260914-001 | DISC-021 | NOVA concurrent-separation-logic verification update | https://popl26.sigplan.org/details/rocqpl-2026-papers/12/ | formal-verification-research | public | unknown | accepted | 2026-09-14 | Accepted for `formal-verification-research`: metadata-only pointer recorded by the Project Manager in `sources/bibliography.md` at `c55065c` under `PMD-20260904-003` class 2 (`PMR-035`, ledger `PML-0022`); owner triage pending; not corpus admission, review, endorsement, or a formal-verification claim. |
 
 ## Activity log
 
