@@ -1,15 +1,21 @@
 # Analysis workbook - Handoff
 
 Component: `analysis-workbook`
-Status: `Active; three completed analysis sessions and three pull-only outbox interfaces`
+Status: `Active; four completed analysis sessions and three pull-only outbox interfaces`
 Updated: `2026-09-14`
 
 ## Overall position
 
-The component remains self-validating. It contains three complete private
+The component remains self-validating. It contains four complete private
 analysis sessions, the generated workbook index, the source-discovery log and
 PM queue, a dedicated Helium-to-Beryllium method-transfer queue, and a
 cross-component collaboration-request queue.
+
+`AWB-20260914-002` defines a proposed CHERI-native decomposed-hypervisor
+security model, hardware-resource correspondence invariants, lifecycle
+falsification tests, a layered assurance plan, and a possible future
+Helium-to-CHERI parity comparator. It selects no target or implementation and
+makes no completed formal-verification claim.
 
 The method-transfer queue starts with HET-001, which records the 2026-09-04
 user direction that Helium Tier 8 is the FV endpoint and presents reusable FV
@@ -30,11 +36,12 @@ claim.
 | Templates | `templates/` | 12 files |
 | Scripts | `scripts/` | 6 files, executable |
 | Tests | `tests/validate-agent.sh`, `tests/fixtures/valid-session/` | Contract coverage includes the transfer queue |
-| Index | `WORKBOOK.md` | Generated; three sessions and seven inquiries |
-| Source discovery | `SOURCE-DISCOVERY-LOG.md`, `outbox/pm-queue.md` | 21 source pointers in the source-discovery workflow |
+| Index | `WORKBOOK.md` | Generated; four sessions and twelve inquiries |
+| Source discovery | `SOURCE-DISCOVERY-LOG.md`, `outbox/pm-queue.md` | 26 source pointers in the source-discovery workflow |
 | Method transfer | `outbox/helium-transfer-queue.md` | HET-001 is `recorded` and `unaccepted` |
 | Collaboration requests | `outbox/collaboration-requests.md` | CRQ-001 is `routed`, mirrored from Project Manager request `PMR-034` |
-| Repository state | `main` | PMR-036 owner correction validated; local-only until separately pushed |
+| Security-model research | `sessions/AWB-20260914-002-cheri-hypervisor-security-model/` | Five complete inquiries, 47 evidence records, and three proposed models; Fable/Codex review complete |
+| Repository state | `main` | New research session and PMQ-022..026 are validated and local-only pending commit |
 
 ## Current transfer input
 
@@ -65,22 +72,28 @@ HET-001 intentionally remains pending Beryllium-side triage. That open
 lifecycle state is not a blocker and must not be converted into an adoption,
 planning approval, responsible-human review, release, or assurance claim.
 
+The new security model is research input, not an implementation authorization.
+A later Helium-to-CHERI comparator requires responsible-human selection of one
+exact Helium baseline and a separately approved CHERI target.
+
 ## Exact next action
 
-The next Project Manager turn should inspect the XRV owner evidence for
-`PMR-025` and `PMR-034`, then report the resulting disposition. The workbook
-maintainer may mirror a later `accepted`, `rejected`, `deferred`, or
-`completed` status only from that exact Project Manager or owner-side record.
+After final session validation, the Project Manager should pull
+`PMQ-022..026`. The XRV owner should separately review the security model and
+correspondence documents as proposed architecture; no XRV incorporation or
+Helium-to-CHERI implementation is implied.
 
 ## Validation
 
-Latest local validation for the collaboration-interface change:
+Latest local validation:
 
-- completed-session validation: passed;
+- AWB-20260914-002 complete-session validation: passed with five inquiries and
+  47 evidence records;
 - Helium transfer queue validation: passed;
 - repository contract suite: 182 passed, 8 pre-existing transfer-transition
   fixture failures;
-- `git diff --check`: required before handoff.
+- generated workbook check: passed;
+- `git diff --check`: passed.
 
 Use:
 
@@ -120,3 +133,4 @@ triage input and does not authorize a write to Helium or Beryllium.
 | ACTIVITY-004 | 2026-09-04 | analysis-workbook | Added the dedicated Helium method-transfer interface and HET-001. | HET-001 is `new` and `unaccepted`; no sibling component was modified. |
 | ACTIVITY-005 | 2026-09-14 | analysis-workbook | Completed two additional private analysis sessions and added CRQ-001. | XRV collaboration setup is specified and queued; no sibling component was modified. |
 | ACTIVITY-006 | 2026-09-14 | analysis-workbook | Corrected the CRQ status-writer contract under PMR-036 and mirrored CRQ-001 as `routed` from PMR-034. | The Project Manager record remains authoritative; no owner completion or acceptance is inferred. |
+| ACTIVITY-007 | 2026-09-14 | analysis-workbook | Completed AWB-20260914-002 and queued five formal-verification source pointers. | The session proposes a CHERI security model and Helium parity comparator; no implementation, proof, or approval is claimed. |

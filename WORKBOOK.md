@@ -14,6 +14,7 @@ here is a decision, an approval, a sign-off, or a publication.
 
 | Session | Title | Created | Phase | Status | Distribution | Inquiries |
 | --- | --- | --- | --- | --- | --- | --- |
+| [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | CHERI-Native Hypervisor Security Model | 2026-09-14 | Analysis | Complete | `private` | 5 |
 | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | Object-Capability Hypervisor Review | 2026-09-14 | Analysis | Complete | `private` | 4 |
 | [AWB-20260913-001](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/session.md) | Pure CHERI Hypervisor Discussion History | 2026-09-13 | Analysis | Complete | `private` | 2 |
 | [AWB-20260829-001](sessions/AWB-20260829-001-post-g-install-readback-use-case/session.md) | Post-G-stage install readback use case and threat analysis | 2026-08-29 | Analysis | Complete | `private` | 1 |
@@ -25,6 +26,36 @@ here is a decision, an approval, a sign-off, or a publication.
 | Inquiry | Question | Session | Confidence | Status | Report | Summary |
 | --- | --- | --- | --- | --- | --- | --- |
 | Q-004 | What Should Beryllium Retain? | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | High | Complete | [report](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-004/report.md) | [summary](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-004/summary.md) |
+
+### CHERI-native hypervisor authority
+
+| Inquiry | Question | Session | Confidence | Status | Report | Summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Q-001 | What Is the CHERI-Native Authority Model? | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | High | Complete | [report](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-001/report.md) | [summary](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-001/summary.md) |
+
+### Capability-to-hardware correspondence
+
+| Inquiry | Question | Session | Confidence | Status | Report | Summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Q-002 | How Must Capability Authority Correspond to Hardware Resources? | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | High | Complete | [report](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-002/report.md) | [summary](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-002/summary.md) |
+
+### Helium-to-CHERI direct comparison
+
+| Inquiry | Question | Session | Confidence | Status | Report | Summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Q-005 | What Would a CHERI Equivalent to Helium Require for Direct Comparison? | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | High | Complete | [report](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-005/report.md) | [summary](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-005/summary.md) |
+
+### Layered assurance strategy
+
+| Inquiry | Question | Session | Confidence | Status | Report | Summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Q-004 | How Should the Model Be Assured? | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | High | Complete | [report](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-004/report.md) | [summary](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-004/summary.md) |
+
+### Lifecycle falsification
+
+| Inquiry | Question | Session | Confidence | Status | Report | Summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Q-003 | Which Lifecycle Traces Falsify the Model? | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | High | Complete | [report](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-003/report.md) | [summary](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-003/summary.md) |
 
 ### Literature, project, product, and community maturity
 
@@ -66,6 +97,11 @@ here is a decision, an approval, a sign-off, or a publication.
 
 | Created | Session | Inquiry | Question | Topic | Confidence | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| 2026-09-14 | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | [Q-005](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-005/report.md) | What Would a CHERI Equivalent to Helium Require for Direct Comparison? | Helium-to-CHERI direct comparison | High | Complete |
+| 2026-09-14 | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | [Q-004](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-004/report.md) | How Should the Model Be Assured? | Layered assurance strategy | High | Complete |
+| 2026-09-14 | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | [Q-003](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-003/report.md) | Which Lifecycle Traces Falsify the Model? | Lifecycle falsification | High | Complete |
+| 2026-09-14 | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | [Q-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-002/report.md) | How Must Capability Authority Correspond to Hardware Resources? | Capability-to-hardware correspondence | High | Complete |
+| 2026-09-14 | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | [Q-001](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-001/report.md) | What Is the CHERI-Native Authority Model? | CHERI-native hypervisor authority | High | Complete |
 | 2026-09-14 | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | [Q-004](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-004/report.md) | What Should Beryllium Retain? | Bounded implications for Beryllium | High | Complete |
 | 2026-09-14 | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | [Q-003](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-003/report.md) | Which Patterns Recur and What Limits Them? | Recurring patterns and limiting counter-evidence | High | Complete |
 | 2026-09-14 | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | [Q-002](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-002/report.md) | What Is the Demonstrated Maturity? | Literature, project, product, and community maturity | High | Complete |
@@ -81,6 +117,7 @@ here is a decision, an approval, a sign-off, or a publication.
 | AWB-20260829-001 | Determine the security and assurance use case for post-G-stage install readback in Beryllium, the threats that could justify it, its failure and false-assurance modes, and whether alternative verification mechanisms provide better coverage. |
 | AWB-20260913-001 | Historical discussion or consideration of a pure-CHERI version of the Beryllium hypervisor. |
 | AWB-20260914-001 | Hypervisors and closely related systems that use CHERI, comparable capability hardware, or object capabilities as their core security model. |
+| AWB-20260914-002 | CHERI-native decomposed-hypervisor authority, resource |
 
 ## Related indexes
 
