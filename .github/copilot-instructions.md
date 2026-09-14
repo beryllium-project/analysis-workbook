@@ -142,6 +142,23 @@ Beryllium-side triage, append a stable `HET-NNN` item to
 The queue is a pull interface only. This repository never writes the
 candidate into Beryllium planning or implementation artifacts.
 
+## Cross-component collaboration requests
+
+When the user directs an owner-boundary or collaboration-protocol proposal to
+the Project Manager, record the owner-ready specification inside this
+repository and append a stable `CRQ-NNN` row to
+[outbox/collaboration-requests.md](../outbox/collaboration-requests.md).
+
+- Keep collaboration requests separate from source-discovery `PMQ-NNN` and
+  Helium-transfer `HET-NNN` records.
+- Create requests with status `new`; only the Project Manager mirrors later
+  handling after observing an exact Project Manager or owner-side record.
+- A collaboration request never grants permission to write another component,
+  create a guest branch, allocate owner review IDs, integrate research, or
+  infer acceptance.
+- Preserve the owning component's source-intake, review, handoff, branch,
+  licensing, and publication rules.
+
 ## Artifact contract
 
 Use stable session IDs `AWB-YYYYMMDD-NNN` and inquiry IDs `Q-NNN`. A session

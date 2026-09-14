@@ -14,9 +14,23 @@ here is a decision, an approval, a sign-off, or a publication.
 
 | Session | Title | Created | Phase | Status | Distribution | Inquiries |
 | --- | --- | --- | --- | --- | --- | --- |
+| [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | Object-Capability Hypervisor Review | 2026-09-14 | Analysis | Complete | `private` | 4 |
+| [AWB-20260913-001](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/session.md) | Pure CHERI Hypervisor Discussion History | 2026-09-13 | Analysis | Complete | `private` | 2 |
 | [AWB-20260829-001](sessions/AWB-20260829-001-post-g-install-readback-use-case/session.md) | Post-G-stage install readback use case and threat analysis | 2026-08-29 | Analysis | Complete | `private` | 1 |
 
 ## By topic
+
+### Bounded implications for Beryllium
+
+| Inquiry | Question | Session | Confidence | Status | Report | Summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Q-004 | What Should Beryllium Retain? | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | High | Complete | [report](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-004/report.md) | [summary](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-004/summary.md) |
+
+### Literature, project, product, and community maturity
+
+| Inquiry | Question | Session | Confidence | Status | Report | Summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Q-002 | What Is the Demonstrated Maturity? | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | High | Complete | [report](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-002/report.md) | [summary](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-002/summary.md) |
 
 ### Post-G-stage install readback use case
 
@@ -24,10 +38,40 @@ here is a decision, an approval, a sign-off, or a publication.
 | --- | --- | --- | --- | --- | --- | --- |
 | Q-001 | Establish the post-G-stage install readback use case | [AWB-20260829-001](sessions/AWB-20260829-001-post-g-install-readback-use-case/session.md) | Medium | Complete | [report](sessions/AWB-20260829-001-post-g-install-readback-use-case/inquiries/Q-001/report.md) | [summary](sessions/AWB-20260829-001-post-g-install-readback-use-case/inquiries/Q-001/summary.md) |
 
+### Pure-CHERI hypervisor discussion history
+
+| Inquiry | Question | Session | Confidence | Status | Report | Summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Q-001 | Was a Pure CHERI Hypervisor Discussed or Considered? | [AWB-20260913-001](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/session.md) | High | Complete | [report](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/inquiries/Q-001/report.md) | [summary](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/inquiries/Q-001/summary.md) |
+
+### Qualifying object-capability hypervisor systems
+
+| Inquiry | Question | Session | Confidence | Status | Report | Summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Q-001 | Which Systems Genuinely Qualify? | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | High | Complete | [report](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-001/report.md) | [summary](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-001/summary.md) |
+
+### Recurring patterns and limiting counter-evidence
+
+| Inquiry | Question | Session | Confidence | Status | Report | Summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Q-003 | Which Patterns Recur and What Limits Them? | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | High | Complete | [report](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-003/report.md) | [summary](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-003/summary.md) |
+
+### Restored formal-verification repository review
+
+| Inquiry | Question | Session | Confidence | Status | Report | Summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Q-002 | Does the Restored Formal Verification Repository Change the Finding? | [AWB-20260913-001](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/session.md) | High | Complete | [report](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/inquiries/Q-002/report.md) | [summary](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/inquiries/Q-002/summary.md) |
+
 ## Chronological
 
 | Created | Session | Inquiry | Question | Topic | Confidence | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| 2026-09-14 | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | [Q-004](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-004/report.md) | What Should Beryllium Retain? | Bounded implications for Beryllium | High | Complete |
+| 2026-09-14 | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | [Q-003](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-003/report.md) | Which Patterns Recur and What Limits Them? | Recurring patterns and limiting counter-evidence | High | Complete |
+| 2026-09-14 | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | [Q-002](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-002/report.md) | What Is the Demonstrated Maturity? | Literature, project, product, and community maturity | High | Complete |
+| 2026-09-14 | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | [Q-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/inquiries/Q-001/report.md) | Which Systems Genuinely Qualify? | Qualifying object-capability hypervisor systems | High | Complete |
+| 2026-09-13 | [AWB-20260913-001](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/session.md) | [Q-002](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/inquiries/Q-002/report.md) | Does the Restored Formal Verification Repository Change the Finding? | Restored formal-verification repository review | High | Complete |
+| 2026-09-13 | [AWB-20260913-001](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/session.md) | [Q-001](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/inquiries/Q-001/report.md) | Was a Pure CHERI Hypervisor Discussed or Considered? | Pure-CHERI hypervisor discussion history | High | Complete |
 | 2026-08-29 | [AWB-20260829-001](sessions/AWB-20260829-001-post-g-install-readback-use-case/session.md) | [Q-001](sessions/AWB-20260829-001-post-g-install-readback-use-case/inquiries/Q-001/report.md) | Establish the post-G-stage install readback use case | Post-G-stage install readback use case | Medium | Complete |
 
 ## Session aspects
@@ -35,6 +79,8 @@ here is a decision, an approval, a sign-off, or a publication.
 | Session | Frozen aspect |
 | --- | --- |
 | AWB-20260829-001 | Determine the security and assurance use case for post-G-stage install readback in Beryllium, the threats that could justify it, its failure and false-assurance modes, and whether alternative verification mechanisms provide better coverage. |
+| AWB-20260913-001 | Historical discussion or consideration of a pure-CHERI version of the Beryllium hypervisor. |
+| AWB-20260914-001 | Hypervisors and closely related systems that use CHERI, comparable capability hardware, or object capabilities as their core security model. |
 
 ## Related indexes
 

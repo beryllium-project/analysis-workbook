@@ -123,6 +123,17 @@ result, and it never claims Beryllium adoption, planning approval,
 responsible-human review, implementation authorization, assurance,
 publication, release, or hardware validation.
 
+## Cross-component collaboration requests
+
+Owner-boundary and collaboration-protocol proposals are recorded in
+[outbox/collaboration-requests.md](outbox/collaboration-requests.md) as stable
+`CRQ-NNN` requests.
+
+This is a third pull interface. It does not carry source intake or Helium
+methods and does not grant this component write access to a sibling
+repository. The Project Manager routes the request; the owning component
+decides and implements any collaboration interface under its own rules.
+
 ## Scripts
 
 | Script | Purpose |

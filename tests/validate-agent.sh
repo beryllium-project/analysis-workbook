@@ -152,6 +152,7 @@ for required in \
     SOURCE-DISCOVERY-LOG.md \
     outbox/pm-queue.md \
     outbox/helium-transfer-queue.md \
+    outbox/collaboration-requests.md \
     .gitignore; do
     require_file "$repository_root/$required"
 done
@@ -210,6 +211,7 @@ interface=$repository_root/AGENT-INTERFACE.md
 require_text "$interface" 'pull'
 require_text "$interface" 'outbox/pm-queue.md'
 require_text "$interface" 'outbox/helium-transfer-queue.md'
+require_text "$interface" 'outbox/collaboration-requests.md'
 
 sources=$repository_root/RESEARCH-SOURCES.md
 require_text "$sources" 'provenance-review'
@@ -235,6 +237,11 @@ printf '\n== Helium method-transfer queue ==\n'
 
 transfer=$repository_root/outbox/helium-transfer-queue.md
 require_text "$repository_root/README.md" 'outbox/helium-transfer-queue.md'
+require_text "$repository_root/README.md" 'outbox/collaboration-requests.md'
+require_text "$repository_root/HANDOFF.md" 'CRQ-001'
+require_text "$instructions" 'outbox/collaboration-requests.md'
+require_pattern "$repository_root/outbox/collaboration-requests.md" '^# Cross-component collaboration request queue$'
+require_text "$repository_root/outbox/collaboration-requests.md" '| CRQ-001 | 2026-09-14 | AWB-20260914-001 |'
 require_text "$repository_root/HANDOFF.md" 'HET-001'
 require_text "$repository_root/WORKBOOK.md" 'outbox/helium-transfer-queue.md'
 require_text "$instructions" 'outbox/helium-transfer-queue.md'

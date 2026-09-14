@@ -20,8 +20,10 @@ implementation + research components  ──read-only──▶  analysis-workboo
                                       human reader ◀──────────┤ sessions/, WORKBOOK.md
                                                              ├──▶ outbox/pm-queue.md
                                                              │    Project Manager/research pull
-                                                             └──▶ outbox/helium-transfer-queue.md
-                                                                  Project Manager/Beryllium pull
+                                                             ├──▶ outbox/helium-transfer-queue.md
+                                                             │    Project Manager/Beryllium pull
+                                                             └──▶ outbox/collaboration-requests.md
+                                                                  Project Manager/owner pull
 ```
 
 ## Inputs consumed
@@ -46,6 +48,7 @@ authority, and restrictions are in [RESEARCH-SOURCES.md](RESEARCH-SOURCES.md).
 | Source discoveries | `SOURCE-DISCOVERY-LOG.md` | Project Manager, research agents | Append-only durable log |
 | PM queue | `outbox/pm-queue.md` | Project Manager, research agents | Actionable pull queue with per-entry status |
 | Helium transfer queue | `outbox/helium-transfer-queue.md` | Project Manager, Beryllium owner and responsible human | `HET-NNN` method inputs; `new` and `unaccepted` on entry |
+| Collaboration requests | `outbox/collaboration-requests.md` | Project Manager and component owners | `CRQ-NNN` owner-boundary and collaboration-protocol requests |
 
 ## Write boundary
 
@@ -140,6 +143,26 @@ The final status-history row is authoritative. The queue summary is a derived
 current index and may change only to mirror an appended valid transition.
 Run `scripts/validate-helium-transfer-queue.sh`, using `--baseline` when a
 prior queue revision is available, before recording or mirroring a change.
+
+### Collaboration-request queue
+
+`outbox/collaboration-requests.md` carries owner-boundary and
+collaboration-protocol requests that are neither source intake nor method
+transfer.
+
+1. This component records an owner-ready specification and a stable `CRQ-NNN`
+   row with status `new`.
+2. The Project Manager records a component-owner request under its own
+   coordination process and may change the queue status only when an exact
+   Project Manager or owner-side record exists.
+3. The component owner decides whether to adopt, revise, defer, or reject the
+   interface and performs every research, review, instruction, handoff, or
+   `COLLAB.md` change outside the Project Manager's narrow carry authority.
+4. Analysis-workbook does not use the queue as permission to create a guest
+   branch or write another component.
+5. Collaboration requests do not replace `pm-queue.md` source intake,
+   `review-log.md` source review, or `helium-transfer-queue.md` method
+   transfer.
 
 ## Relationship to existing interfaces
 
