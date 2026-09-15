@@ -39,9 +39,9 @@ claim.
 | Index | `WORKBOOK.md` | Generated; four sessions and twelve inquiries |
 | Source discovery | `SOURCE-DISCOVERY-LOG.md`, `outbox/pm-queue.md` | 26 source pointers in the source-discovery workflow |
 | Method transfer | `outbox/helium-transfer-queue.md` | HET-001 is `recorded` and `unaccepted` |
-| Collaboration requests | `outbox/collaboration-requests.md` | CRQ-001 is `routed`, mirrored from Project Manager request `PMR-034` |
+| Collaboration requests | `outbox/collaboration-requests.md` | CRQ-001 is `completed`, mirrored from PMR-034 and XRV `d618935`; CRQ-002 is `new` |
 | Security-model research | `sessions/AWB-20260914-002-cheri-hypervisor-security-model/` | Five complete inquiries, 47 evidence records, and three proposed models; Fable/Codex review complete |
-| Repository state | `main` | New research session and PMQ-022..026 are validated and local-only pending commit |
+| Repository state | `main` | Base `b93722b` is seven ahead of `origin/main`; the CRQ-002 recommendation update is uncommitted |
 
 ## Current transfer input
 
@@ -64,9 +64,14 @@ The item says:
 
 ## Blockers
 
-CRQ-001 has been routed through Project Manager request `PMR-034`. Its queue
-status is a maintainer-written mirror of that exact record, not a Project
-Manager write and not evidence that the XRV owner work is complete.
+CRQ-001 is mirrored as `completed` from closed Project Manager request
+`PMR-034` and XRV owner commit `d618935`. The owner-side changes requested by
+PMR-038 are included in the current uncommitted update; Project Manager
+closure awaits the resulting analysis-workbook commit.
+
+CRQ-002 is new. It asks the Project Manager to sequence the post-reorganization
+cap-talk closure through the OS-security, XRV, and analysis-workbook owners
+without duplicating existing PMRs or crossing source-ownership boundaries.
 
 HET-001 intentionally remains pending Beryllium-side triage. That open
 lifecycle state is not a blocker and must not be converted into an adoption,
@@ -78,10 +83,10 @@ exact Helium baseline and a separately approved CHERI target.
 
 ## Exact next action
 
-After final session validation, the Project Manager should pull
-`PMQ-022..026`. The XRV owner should separately review the security model and
-correspondence documents as proposed architecture; no XRV incorporation or
-Helium-to-CHERI implementation is implied.
+The Project Manager should pull CRQ-002. `PMQ-022..026` are already
+dispositioned under `PML-0023..0027`; no source-queue pull is due for them.
+After the analysis-workbook owner reports this update's commit, close PMR-038.
+The XRV owner separately reviews the security model under PMR-040.
 
 ## Validation
 
@@ -134,3 +139,5 @@ triage input and does not authorize a write to Helium or Beryllium.
 | ACTIVITY-005 | 2026-09-14 | analysis-workbook | Completed two additional private analysis sessions and added CRQ-001. | XRV collaboration setup is specified and queued; no sibling component was modified. |
 | ACTIVITY-006 | 2026-09-14 | analysis-workbook | Corrected the CRQ status-writer contract under PMR-036 and mirrored CRQ-001 as `routed` from PMR-034. | The Project Manager record remains authoritative; no owner completion or acceptance is inferred. |
 | ACTIVITY-007 | 2026-09-14 | analysis-workbook | Completed AWB-20260914-002 and queued five formal-verification source pointers. | The session proposes a CHERI security model and Helium parity comparator; no implementation, proof, or approval is claimed. |
+| ACTIVITY-008 | 2026-09-15 | analysis-workbook | Added CRQ-002 and a Project Manager execution/delegation packet. | Cap-talk closure is sequenced after repository reorganization and remains owner-executed. |
+| ACTIVITY-009 | 2026-09-15 | analysis-workbook | Applied the PMR-038 owner-side corrections while revising CRQ-002 after independent review. | CRQ-001 is mirrored complete, the interface count and handoff are current, and PMQ-023 points to PMR-041. |

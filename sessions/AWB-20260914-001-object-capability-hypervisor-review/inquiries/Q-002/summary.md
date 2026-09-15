@@ -47,13 +47,14 @@ The questions that would most change this answer.
 
 | Open ID | Question | Blocking |
 | --- | --- | --- |
-| OPEN-001 | What does the post-March-2016 cap-talk continuation contain about CHERI and capability virtualization? | No |
+| OPEN-003 | What does the candidate post-March-2016 cap-talk continuation contain about CHERI and capability virtualization? | No |
 
 ## Limitations
 
-No outreach or private product evidence was used. The inaccessible post-2016
-cap-talk continuation limits exhaustive modern community-history claims, but
-does not affect the main maturity position.
+No outreach or private product evidence was used. A public candidate cap-talk
+group path is identified, but continuity, coverage, and content remain
+unreviewed. This limits exhaustive modern community-history claims, not the
+main maturity position.
 
 ## Activity log
 
@@ -61,3 +62,4 @@ does not affect the main maturity position.
 | --- | --- | --- | --- | --- |
 | ACTIVITY-001 | 2026-09-14 | Inquiry scaffolder | Created the summary. | Initial scaffold created. |
 | ACTIVITY-002 | 2026-09-14 | Analysis orchestrator | Completed the standalone maturity summary. | Matches the report. |
+| ACTIVITY-003 | 2026-09-15 | Analysis orchestrator | Updated the cap-talk limitation after the public access check. | OPEN-003 supersedes OPEN-001; the technical maturity answer is unchanged. |

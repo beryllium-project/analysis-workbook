@@ -42,6 +42,7 @@ Worked in the order given by `RESEARCH-SOURCES.md`.
 | --- | --- | --- | --- | --- | --- | --- |
 | EXT-001 | 2026-09-14 | Web search | Candidate names plus release, product, deployment, certification, activity | Official records across candidates | Current maturity matrix established. | AWB-20260914-001-E0011 through AWB-20260914-001-E0017 |
 | EXT-002 | 2026-09-14 | Web search | `shipping CHERI hypervisor`; `CHERI hypervisor product support matrix`; candidate-specific variants | No qualifying product record | Source-set product negative recorded. | AWB-20260914-001-E0011 |
+| EXT-003 | 2026-09-15 | Direct public fetch | `https://groups.google.com/g/cap-talk`; `https://groups.google.com/robots.txt` | 2 resources | Public candidate group and robots-permitted `/g/` retrieval surface confirmed; search endpoints are disallowed and were not used. | AWB-20260914-001-E0031 |
 
 ## Terminology collisions
 
@@ -68,3 +69,4 @@ never approval to write.
 | --- | --- | --- | --- | --- |
 | ACTIVITY-001 | 2026-09-14 | Inquiry scaffolder | Created the search log. | Initial scaffold created. |
 | ACTIVITY-002 | 2026-09-14 | Analysis orchestrator | Completed maturity and product searches. | Maturity evidence and cap-talk limitation recorded. |
+| ACTIVITY-003 | 2026-09-15 | Analysis orchestrator | Recorded the candidate cap-talk group access check. | The archive-content gap remains open; the earlier blanket access characterization is qualified. |

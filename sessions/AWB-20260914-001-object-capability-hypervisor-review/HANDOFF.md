@@ -35,12 +35,12 @@ excluded.
 
 | Open ID | Question | Blocking | Assumption in use |
 | --- | --- | --- | --- |
-| OPEN-001 | What does the post-March-2016 cap-talk continuation contain about modern capability virtualization? | No | Core findings rely on official primary records. |
+| OPEN-003 | What does the candidate post-March-2016 cap-talk continuation contain about modern capability virtualization? | No | Core findings rely on official primary records; group continuity and content remain unreviewed. |
 | OPEN-002 | What exact target, threat model, hardware, and evaluation contract would govern a later CHERI PoC? | No | No PoC decision is made in this session. |
 
 ## Validation
 
-Session validation passed in complete mode with 4 inquiries and 30 evidence
+Session validation passed in complete mode with 4 inquiries and 31 evidence
 records. The Helium transfer queue validator passed. The repository-wide
 agent contract suite reported 182 passed and 8 failed; all eight failures are
 the pre-existing Helium transfer-queue transition fixture failures also
@@ -52,9 +52,10 @@ bash ./scripts/validate-session.sh sessions/AWB-20260914-001-object-capability-h
 
 ## Exact next action
 
-Have the Project Manager pull CRQ-001 and PMQ-017 through PMQ-021, then
-coordinate the XRV owner collaboration interface and source incorporation
-while preserving the missing `7314e2f` review-record issue.
+Have the Project Manager pull CRQ-002 and process
+`project-manager-execution-recommendations.md`. CRQ-001 is now mirrored
+`completed`; after this analysis-workbook update is committed and returned,
+the Project Manager can close PMR-038.
 
 ## Activity log
 
@@ -64,3 +65,5 @@ while preserving the missing `7314e2f` review-record issue.
 | ACTIVITY-002 | 2026-09-14 | Analysis orchestrator | Recorded completed findings, open questions, and owner handoff. | Validation pending. |
 | ACTIVITY-003 | 2026-09-14 | Analysis orchestrator | Recorded completed-package validation. | Session and queue validation passed; repository contract suite reached 182 passing checks and retained its 8 unrelated baseline failures. |
 | ACTIVITY-004 | 2026-09-14 | Analysis orchestrator | Added an owner-ready XRV collaboration specification and CRQ-001. | Project Manager pull interface created; XRV remains unmodified. |
+| ACTIVITY-005 | 2026-09-15 | Analysis orchestrator | Added a post-reorganization Project Manager execution packet and CRQ-002. | Recommendations reuse existing PMRs and delegate the cap-talk closure through OS-security, XRV, and analysis-workbook owners. |
+| ACTIVITY-006 | 2026-09-15 | Analysis orchestrator | Applied Claude Fable 5.1 review corrections to the execution packet and PMR-038 mirror state. | Dependencies, access handling, portability, owner returns, and stale coordination wording were corrected. |

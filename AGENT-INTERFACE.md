@@ -9,10 +9,10 @@ the component's side of the workspace agentic boundary described in
 ## Position in the workspace
 
 `analysis-workbook` is a consumer component. It reads implementation and
-research components, produces human-facing analysis, and emits two pull-only
-outbox queues: newly discovered sources and evidence-scoped
-Helium-to-Beryllium method inputs. It owns no implementation, no research
-corpus, and no assurance gate.
+research components, produces human-facing analysis, and emits three pull-only
+outbox interfaces: source discoveries, evidence-scoped Helium-to-Beryllium
+method inputs, and owner-boundary collaboration requests. It owns no
+implementation, no research corpus, and no assurance gate.
 
 ```text
 implementation + research components  ──read-only──▶  analysis-workbook

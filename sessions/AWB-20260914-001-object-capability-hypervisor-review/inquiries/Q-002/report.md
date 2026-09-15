@@ -70,13 +70,13 @@ Each finding is a subsection. Use the following shape.
 
 ### FINDING-004
 
-- Statement: The historical cap-talk archive is available through March 2016; the inaccessible post-2016 continuation is a bounded community-history gap.
-- Evidence IDs: AWB-20260914-001-E0018
+- Statement: The historical cap-talk archive is available through March 2016, and a public candidate continuation path has now been identified; its continuity, coverage, and contents remain an open community-history gap.
+- Evidence IDs: AWB-20260914-001-E0018, AWB-20260914-001-E0031
 - Confidence: High
-- Evidence basis: The local OS-security archive contains readable monthly exports and records the later Google Groups continuation as inaccessible to passive headless retrieval.
-- Alternatives considered: The entire cap-talk history might be missing.
-- Counter-evidence: The recovered 1998-2016 message corpus is locally present.
-- Limitations: The gap prevents exhaustive claims about modern discussion or silence, not system qualification or maturity.
+- Evidence basis: The local OS-security archive contains readable monthly exports. A later check found a public `cap-talk` Google Groups landing page and robots-permitted group paths, while Google Groups search endpoints remain disallowed.
+- Alternatives considered: The candidate group may be a namesake rather than the canonical continuation, or may have incomplete migrated history.
+- Counter-evidence: The public landing route disproves the earlier blanket statement that passive access is unavailable.
+- Limitations: The group identity, coverage, and message contents remain unreviewed. The gap prevents exhaustive claims about modern discussion or silence, not system qualification or maturity.
 
 `Confidence` is `High`, `Medium`, or `Low`. A `Low`-confidence item belongs in
 Hypotheses, not in Findings.
@@ -96,7 +96,7 @@ Assumptions standing in for unanswered non-blocking questions.
 
 | Open ID | Assumption | Why it was necessary | Effect if wrong |
 | --- | --- | --- | --- |
-| OPEN-001 | Core qualification and maturity rely on official project, product, source, and publication records rather than post-2016 cap-talk discussion. | The modern continuation is inaccessible to the passive workflow. | A complete archive could add community-history or discovery leads, but would not by itself establish architecture or maturity. |
+| OPEN-003 | Core qualification and maturity rely on official project, product, source, and publication records rather than post-2016 cap-talk discussion. | The candidate group is reachable, but continuity, coverage, and content have not been reviewed. | A complete review could add community-history or discovery leads, but would not by itself establish architecture or maturity. |
 
 ## Disagreements and terminology
 
@@ -123,8 +123,9 @@ What this analysis does not establish, what was excluded, where coverage is
 thin, and which blocked resources matter.
 
 Public passive evidence cannot reveal proprietary hypervisor internals or
-private deployments. Post-2016 cap-talk discourse is inaccessible. Some
-project status evidence is vendor-authored.
+private deployments. Post-2016 cap-talk discourse has not yet been reviewed
+and must be gathered only through permitted group/thread paths. Some project
+status evidence is vendor-authored.
 
 ## What would change the answer
 
@@ -141,3 +142,4 @@ assessment.
 | --- | --- | --- | --- | --- | --- |
 | ACTIVITY-001 | 2026-09-14 | Inquiry scaffolder | Created the report. | None | Initial scaffold created. |
 | ACTIVITY-002 | 2026-09-14 | Analysis orchestrator | Completed four-dimensional maturity synthesis. | AWB-20260914-001-E0011 through AWB-20260914-001-E0018 | Current software object-capability systems lead; CHERI hypervisors remain research-stage. |
+| ACTIVITY-003 | 2026-09-15 | Analysis orchestrator | Qualified the cap-talk access finding after direct public retrieval and independent review. | AWB-20260914-001-E0031 | Public group access is established; canonical continuity and content remain open. |

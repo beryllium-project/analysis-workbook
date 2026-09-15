@@ -32,3 +32,10 @@ resource would change the answer.
 | --- | --- | --- | --- | --- |
 | ACTIVITY-001 | 2026-09-14 | Session scaffolder | Created the inaccessible-resource record. | Initial scaffold created. |
 | ACTIVITY-002 | 2026-09-14 | Analysis orchestrator | Recorded six inaccessible or unlocated resources. | Cap-talk is a bounded community-history limitation; Bao-CHERI and CHERI-Hafnium are high-priority architecture gaps. |
+| ACTIVITY-003 | 2026-09-15 | Analysis orchestrator | Qualified BLOCKED-004 after independent review and a direct public access check. | The Google Groups landing path and robots-permitted `/g/` surface are reachable; archive identity, coverage, and content remain unreviewed. |
+
+## Access updates
+
+| Update ID | Resource | Qualifies | New observation | Remaining limitation | Checked date |
+| --- | --- | --- | --- | --- | --- |
+| ACCESS-001 | Candidate modern cap-talk group | BLOCKED-004 | `https://groups.google.com/g/cap-talk` returns a public group page, and Google Groups `robots.txt` permits `/g/` paths while disallowing search endpoints such as `/d/search*` and `/d/topicsearch*`. | The group must still be verified as the canonical continuation; thread coverage and content have not been enumerated or reviewed. The earlier access result remains the historical result of the 2026-09-14 workstream. | 2026-09-15 |
