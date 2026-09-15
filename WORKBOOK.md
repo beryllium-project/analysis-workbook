@@ -14,6 +14,7 @@ here is a decision, an approval, a sign-off, or a publication.
 
 | Session | Title | Created | Phase | Status | Distribution | Inquiries |
 | --- | --- | --- | --- | --- | --- | --- |
+| [AWB-20260915-001](sessions/AWB-20260915-001-smdbltrp-consideration/session.md) | Smdbltrp consideration across Beryllium and Helium | 2026-09-15 | Complete | Complete | `private` | 1 |
 | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | CHERI-Native Hypervisor Security Model | 2026-09-14 | Analysis | Complete | `private` | 5 |
 | [AWB-20260914-001](sessions/AWB-20260914-001-object-capability-hypervisor-review/session.md) | Object-Capability Hypervisor Review | 2026-09-14 | Analysis | Complete | `private` | 4 |
 | [AWB-20260913-001](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/session.md) | Pure CHERI Hypervisor Discussion History | 2026-09-13 | Analysis | Complete | `private` | 2 |
@@ -93,10 +94,17 @@ here is a decision, an approval, a sign-off, or a publication.
 | --- | --- | --- | --- | --- | --- | --- |
 | Q-002 | Does the Restored Formal Verification Repository Change the Finding? | [AWB-20260913-001](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/session.md) | High | Complete | [report](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/inquiries/Q-002/report.md) | [summary](sessions/AWB-20260913-001-pure-cheri-hypervisor-history/inquiries/Q-002/summary.md) |
 
+### Smdbltrp and Ssdbltrp consideration across Beryllium and Helium
+
+| Inquiry | Question | Session | Confidence | Status | Report | Summary |
+| --- | --- | --- | --- | --- | --- | --- |
+| Q-001 | Smdbltrp consideration and coverage gaps | [AWB-20260915-001](sessions/AWB-20260915-001-smdbltrp-consideration/session.md) | High | Complete | [report](sessions/AWB-20260915-001-smdbltrp-consideration/inquiries/Q-001/report.md) | [summary](sessions/AWB-20260915-001-smdbltrp-consideration/inquiries/Q-001/summary.md) |
+
 ## Chronological
 
 | Created | Session | Inquiry | Question | Topic | Confidence | Status |
 | --- | --- | --- | --- | --- | --- | --- |
+| 2026-09-15 | [AWB-20260915-001](sessions/AWB-20260915-001-smdbltrp-consideration/session.md) | [Q-001](sessions/AWB-20260915-001-smdbltrp-consideration/inquiries/Q-001/report.md) | Smdbltrp consideration and coverage gaps | Smdbltrp and Ssdbltrp consideration across Beryllium and Helium | High | Complete |
 | 2026-09-14 | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | [Q-005](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-005/report.md) | What Would a CHERI Equivalent to Helium Require for Direct Comparison? | Helium-to-CHERI direct comparison | High | Complete |
 | 2026-09-14 | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | [Q-004](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-004/report.md) | How Should the Model Be Assured? | Layered assurance strategy | High | Complete |
 | 2026-09-14 | [AWB-20260914-002](sessions/AWB-20260914-002-cheri-hypervisor-security-model/session.md) | [Q-003](sessions/AWB-20260914-002-cheri-hypervisor-security-model/inquiries/Q-003/report.md) | Which Lifecycle Traces Falsify the Model? | Lifecycle falsification | High | Complete |
@@ -118,6 +126,7 @@ here is a decision, an approval, a sign-off, or a publication.
 | AWB-20260913-001 | Historical discussion or consideration of a pure-CHERI version of the Beryllium hypervisor. |
 | AWB-20260914-001 | Hypervisors and closely related systems that use CHERI, comparable capability hardware, or object capabilities as their core security model. |
 | AWB-20260914-002 | CHERI-native decomposed-hypervisor authority, resource |
+| AWB-20260915-001 | Determine whether the Beryllium project, including `helium-te-poc`, |
 
 ## Related indexes
 
